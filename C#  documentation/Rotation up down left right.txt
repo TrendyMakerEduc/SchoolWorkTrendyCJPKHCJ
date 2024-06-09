@@ -1,0 +1,27 @@
+Projectile Rotation Theory-
+
+Vector3 localPos  = transform.InverseTransformPosition(Target.position);
+        localPos.y = 0;
+        float angle       = Vector3.Angle(localPos, transform.forward);
+       
+        //float fb        = Mathf.Ceil(Vector3.Dot(Vector3.forward, localPos.normalized));
+        float lr          = Mathf.Ceil(Vector3.Dot(Vector3.right, localPos.normalized));
+       
+        float amount = Enemy_Rotation_Speed * Time.deltaTime;
+        if(amount > angle) amount = angle;
+        if(lr == -1) amount = -amount;
+       
+        print(amount);
+        transform.Rotate(0, 0, amount);
+
+put this in the update of the projectile script then
+
+use this for the four directions
+
+SpriteRenderer.flipX = true;
+
+for left or right or 
+
+SpriteRenderer.flipY = true;
+
+for up and down. set to false when not changing directions
